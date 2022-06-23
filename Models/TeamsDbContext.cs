@@ -65,12 +65,12 @@ namespace kolokwium_2_poprawa_ko_s22454.Models
                 e.HasOne(e => e.Member)
                     .WithMany(e => e.Memberships)
                     .HasForeignKey(e => e.MemberID)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.NoAction);
 
                 e.HasOne(e => e.Team)
                     .WithMany(e => e.Memberships)
                     .HasForeignKey(e => e.TeamID)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.NoAction);
 
                 e.ToTable("Membership");
             });

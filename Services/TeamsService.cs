@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using kolokwium_2_poprawa_ko_s22454.Models;
 using kolokwium_2_poprawa_ko_s22454.Models.DTOs;
@@ -41,6 +42,29 @@ namespace kolokwium_2_poprawa_ko_s22454.Services
                 })
                 .Where(e => e.TeamID == id)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> AddMemberToTeam(int memberId, int teamId)
+        {
+            int team = await _context.Teams.Where(e => e.TeamID == teamId).Select(e => e.OrganizationID)
+                .FirstOrDefaultAsync();
+            int member = await _context.Members.Where(e => e.MemberID == memberId).Select(e => e.OrganizationID)
+                .FirstOrDefaultAsync();
+
+            if (team != member)
+            {
+                return false;
+            }
+
+            _context.AddAsync(new Membership
+            {
+                MemberID = memberId,
+                TeamID = teamId,
+                MembershipDate = DateTime.Now
+            });
+
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }
