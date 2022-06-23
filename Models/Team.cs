@@ -4,6 +4,10 @@ namespace kolokwium_2_poprawa_ko_s22454.Models
 {
     public class Team
     {
+        public Team()
+        {
+            Memberships = new HashSet<Membership>();
+        }
         public int TeamID { get; set; }
         public int OrganizationID { get; set; }
         public string TeamsName { get; set; }
