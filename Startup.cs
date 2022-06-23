@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using kolokwium_2_poprawa_ko_s22454.Models;
+using kolokwium_2_poprawa_ko_s22454.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,13 +29,12 @@ namespace kolokwium_2_poprawa_ko_s22454
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            /*
-            services.AddScoped<>();
-            services.AddDbContext<>(otp =>
+            
+            services.AddScoped<ITeamsService, TeamsService>();
+            services.AddDbContext<TeamsDbContext>(otp =>
             {
-                otp.UseSqlServer("");
-            })
-            */
+                otp.UseSqlServer("Data Source=localhost;User ID=SA;Password=Bardzomocnehaslo2");
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -1,0 +1,7 @@
+﻿namespace kolokwium_2_poprawa_ko_s22454.Services
+{
+    public class TeamsService : ITeamsService
+    {
+        
+    }
+}
